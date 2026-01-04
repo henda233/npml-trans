@@ -41,6 +41,7 @@ islands/
 deno.json
 main.ts
 ```
+.开头的文件夹跳过遍历，如.git、.vscode、.venv等。
 ### 1.6 NPML翻译请求文生成（文件内容聚合）
 NPML翻译请求文格式如下：
 ```text
