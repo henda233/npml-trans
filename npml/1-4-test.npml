@@ -1,0 +1,19 @@
+(prefix){
+    (目标语言：deno+typescript)
+    (描述：测试项目文档中的1.4功能){
+        !(docs/project.md)
+    }
+    (文件输出名：[翻译器决定].ts)
+    (开发风格：单一职责原则、依赖注入、模块化设计)
+}
+
+(测试1.4功能){
+    !(reference_reader.ts)
+    !(file_reader.ts){
+        (参考1.1&1.3功能)
+    }
+    !(docs/feats/1-4.md)
+    (参考file_reader_test.ts){
+        !(file_reader_test.ts)
+    }
+}
