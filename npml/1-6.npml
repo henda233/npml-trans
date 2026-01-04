@@ -1,0 +1,47 @@
+(prefix){
+    (目标语言：deno+typescript)
+    (描述：实现项目文档中的1.6功能){
+        !(docs/project.md)
+    }
+    (文件输出名：[翻译器决定].ts)
+    (开发风格：单一职责原则、依赖注入、模块化设计)
+}
+
+(引用文件){
+    !(docs/feats/1-1&1.3.md)
+    !(docs/feats/1-4.md)
+    !(docs/feats/1-5.md)
+    !(docs/state.md)
+}
+
+(实现1.6功能){
+    (目录树){
+        ./
+        ├── docs/
+        ├── feats/
+        │ ├── 1-1&1.3.md
+        │ ├── 1-4.md
+        │ ├── 1-5.md
+        │ └── 1-6.md
+        ├── project.md
+        └── state.md
+        ├── npml/
+            ├── 1-1-test.npml
+            ├── 1-1.npml
+            ├── 1-4-test.npml
+            ├── 1-4.npml
+            ├── 1-5.npml
+            └── 1-6.npml
+        ├── .gitignore
+        ├── deno.json
+        ├── deno.lock
+        ├── directory_tree_generator.ts
+        ├── dt_g_test.ts
+        ├── file_reader_test.ts
+        ├── file_reader.ts
+        ├── main_test.ts
+        ├── main.ts
+        ├── reference_reader_test.ts
+        └── reference_reader.ts
+    }
+}
