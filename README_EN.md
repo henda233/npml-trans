@@ -1,5 +1,7 @@
-[中文](README.md) | English
+[中文](README.md) | English  
+
 *Translated by Qwen*
+
 # NPML Translator
 
 ## Project Background and Purpose
