@@ -1,4 +1,5 @@
 [中文](README.md) | English
+*Translated by Qwen*
 # NPML Translator
 
 ## Project Background and Purpose
@@ -53,10 +54,10 @@ The `npml` CLI tool operates via command-line arguments.
 npml main.npml
 
 # Generate the translation request document for main.npml, including the structure of the docs/ directory
-npml main.npml -t docs/
+npml -t docs/ main.npml
 
 # Generate the translation request document for main.npml, but do not read reference content
-npml main.npml -dr
+npml -dr main.npml
 ```
 
 

@@ -54,10 +54,10 @@ deno task build-main
 npml main.npml
 
 # 生成 main.npml 的翻译请求文，并包含 docs/ 目录的结构
-npml main.npml -t docs/
+npml -t docs/ main.npml
 
 # 生成 main.npml 的翻译请求文，但不读取引用内容
-npml main.npml -dr
+npml -dr main.npml
 ```
 
 ## 关于 NPML 的概念
