@@ -134,7 +134,7 @@ import * as fs from "jsr:@std/fs";
  * @param npmlFilePath 原始 .npml 文件路径（用于计算输出路径）
  * @returns 写入后的绝对路径；失败则抛出异常
  */
-export function fileOutput(mdContent: string, npmlFilePath: string): string {
+export function FileOutput(mdContent: string, npmlFilePath: string): string {
   const dir = path.dirname(npmlFilePath);
   const base = path.basename(npmlFilePath, path.extname(npmlFilePath));
   const outFile = path.join(dir, base + ".md");
