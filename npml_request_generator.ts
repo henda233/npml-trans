@@ -122,3 +122,26 @@ export class NpmlRequestGenerator {
     return finalContent;
   }
 }
+
+// 新增：引入 Deno 标准库用于文件写盘
+import * as path from "jsr:@std/path";
+import * as fs from "jsr:@std/fs";
+
+/**
+ * 新增：文件输出纯函数
+ * 把 Markdown 内容写入与输入 .npml 文件同目录、同名的 .md 文件，覆盖无提示。
+ * @param mdContent 已聚合好的最终 Markdown 字符串
+ * @param npmlFilePath 原始 .npml 文件路径（用于计算输出路径）
+ * @returns 写入后的绝对路径；失败则抛出异常
+ */
+export function fileOutput(mdContent: string, npmlFilePath: string): string {
+  const dir = path.dirname(npmlFilePath);
+  const base = path.basename(npmlFilePath, path.extname(npmlFilePath));
+  const outFile = path.join(dir, base + ".md");
+
+  // 确保父目录存在（同步版，避免额外 async 传染）
+  fs.ensureFileSync(outFile);
+  // 原子覆盖写盘
+  Deno.writeTextFileSync(outFile, mdContent, { create: true});
+  return outFile;
+}
