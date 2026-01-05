@@ -15,7 +15,7 @@ const options: GenerationOptions = {
     includeDirTree: "./",
     skipReferences: false
 };
-const npml_path = "./npml/1-4.npml";
+const npml_path = "./npml/1-7.npml";
 const result = await npml_request_generator.generateRequest(npml_path,options);
 const output_path = FileOutput(result || "",npml_path);
 
