@@ -4,7 +4,7 @@ import { FileReader } from "./file_reader.ts";
 import { NPMLReferenceReader } from "./reference_reader.ts";
 import { RealDirectoryTreeGenerator } from "./directory_tree_generator.ts";
 import { createDefaultClipboard, guardXsel } from "./clipboard/mod.ts";
-const VERSION = "0.0.2";
+const VERSION = "0.0.3";
 
 function printHelp() {
   console.log(`
@@ -12,6 +12,7 @@ npml <file.npml>  生成翻译请求文（默认输出同名 .md）
 -t <dir>         附加目录树
 -c               输出到剪贴板（不生成文件）
 -dr              禁用引用读取
+-p               主动线上同步NPML提示词
 -v               版本
 -h               帮助
   `.trim());
@@ -23,14 +24,29 @@ function printVersion() {
 
 async function main() {
   const args = parse(Deno.args, {
-    boolean: ["c", "dr", "v", "h"],
+    boolean: ["c", "dr", "v", "h", "p"],
     string: ["t"],
     alias: { help: "h", version: "v" },
     stopEarly: true,
   });
 
-  if (args.v) { printVersion(); Deno.exit(0); }
-  if (args.h || args._.length === 0) { printHelp(); Deno.exit(0); }
+    if (args.v) { printVersion(); Deno.exit(0); }
+    if (args.h || (args._.length === 0 && !args.p)) { // 修改了此行的条件
+      printHelp();
+      Deno.exit(0);
+    }
+    if (args.p) {
+      const { PromptCache } = await import("./prompt_cache.ts");
+      const cache = new PromptCache();
+      try {
+        await cache.syncPrompt();
+        console.log("[OK] NPML提示词已同步");
+      } catch (error) {
+        console.error(`[Error] 同步NPML提示词失败: ${(error as Error).message}`);
+        Deno.exit(1);
+      }
+      Deno.exit(0);
+    }
 
   const [npmlFile] = args._;
   if (typeof npmlFile !== "string") {

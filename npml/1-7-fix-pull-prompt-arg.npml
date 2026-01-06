@@ -1,0 +1,15 @@
+(prefix){
+    (目标编程语言：deno+typescript)
+    (目标文件名：main.ts,prompt_cache.ts)
+}
+
+(引入){
+    !(docs/project.md)
+    !(docs/dev/1-7-dev-fix-pull-prompt-arg.md)
+    !(main.ts)
+    !(prompt_cache.ts)
+}
+
+(实现功能1.7的新功能){
+    (增加一个新参数 -p，用于主动从线上同步更新NPML提示词)
+}

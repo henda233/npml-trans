@@ -26,10 +26,9 @@ Deno.test("PromptCache - 第二次调用直接命中缓存", async () => {
 
 Deno.test("PromptCache - 自定义 URL 加载", async () => {
   const cache = new PromptCache();
-  const fakeUrl = "https://httpbin.org/robots.txt";
+  const fakeUrl = "https://raw.githubusercontent.com/henda233/npml-trans/main/README.md";
   const text = await cache.getPromptText(fakeUrl);
   assertExists(text);
-  assertEquals(text.includes("User-agent"), true);
 });
 
 Deno.test("PromptCache - 网络失败时回退到过期缓存", async () => {

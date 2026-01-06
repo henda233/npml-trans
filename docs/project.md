@@ -105,6 +105,7 @@ npml -h                 :显示参数使用说明。
 npml -c                 :将npml翻译请求文复制到剪切板上，不生成md文档。
 npml -t [dir_path]      :指明需要生成目录树的目录路径。
 npml -dr                :不读取npml代码的引用内容。
+npml -p                 :主动线上同步NPML提示词
 
 ### 1.8 剪切板操作
 采用xsel实现，通过调用xsel CLI实现将内容复制到剪切板中。

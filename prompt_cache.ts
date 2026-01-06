@@ -45,6 +45,18 @@ export class PromptCache {
     return this.fetchPromise;
   }
 
+  async syncPrompt(url?: string): Promise<void> {
+    const targetUrl = url || DEFAULT_PROMPT_URL;
+    const cachePath = getCachePath();
+
+    const res = await fetch(targetUrl);
+    if (!res.ok) throw new Error(`Network error: ${res.status} ${res.statusText}`);
+    const text = await res.text();
+
+    await fs.ensureDir(path.dirname(cachePath));
+    await Deno.writeTextFile(cachePath, text);
+  }
+
   private async loadPrompt(url: string, cachePath: string): Promise<string> {
     if (isCacheValid(cachePath)) {
       return await Deno.readTextFile(cachePath);
