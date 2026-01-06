@@ -1,0 +1,16 @@
+(prefix){
+    (目标编程语言：deno+typescript)
+    (目标文件名：main.ts)
+}
+
+(引用){
+    !(docs/api/1-6-api.md)
+    !(docs/api/1-8-api.md)
+    !(main.ts)
+    !(docs/feats/1-7-fix-clipboard.md)
+}
+
+(实现1.7 功能 Fix){
+    (参考1.7 功能 Fix 文档)
+    (完善剪切板操作)
+}

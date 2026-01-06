@@ -3,8 +3,8 @@ import { NpmlRequestGenerator, FileOutput, GenerationOptions } from "./npml_requ
 import { FileReader } from "./file_reader.ts";
 import { NPMLReferenceReader } from "./reference_reader.ts";
 import { RealDirectoryTreeGenerator } from "./directory_tree_generator.ts";
-
-const VERSION = "0.0.1";
+import { createDefaultClipboard, guardXsel } from "./clipboard/mod.ts";
+const VERSION = "0.0.2";
 
 function printHelp() {
   console.log(`
@@ -37,14 +37,15 @@ async function main() {
     console.error("[Error] 必须指定一个 .npml 文件");
     Deno.exit(1);
   }
-  console.log(`arg.t == ${args.t}`);
 
   // 实例化 1.6 所需依赖
   const fileReader = new FileReader();
   const referenceReader = new NPMLReferenceReader(fileReader);
   const dirTreeGen = new RealDirectoryTreeGenerator();
-  const generator = new NpmlRequestGenerator(fileReader, referenceReader, dirTreeGen);
-
+  await guardXsel(); // 检查剪贴板依赖
+  const clipboard = createDefaultClipboard();
+  const generator = new NpmlRequestGenerator(fileReader, referenceReader, dirTreeGen, clipboard);
+  
   const options: GenerationOptions = {
     includeDirTree: args.t,
     skipReferences: args.dr,
@@ -58,9 +59,13 @@ async function main() {
   }
 
   if (args.c) {
-    // 未来替换为 Deno.writeText(await clipboard(), md)
-    console.log("--- Content to be copied to clipboard ---");
-    console.log(md);
+    try {
+      await clipboard.writeText(md);
+      console.log("[OK] 内容已复制到剪贴板");
+    } catch (error) {
+      console.error(`[Error] 剪贴板写入失败: ${(error as Error).message}`);
+      Deno.exit(1);
+    }
   } else {
     try {
       const outPath = FileOutput(md, npmlFile);

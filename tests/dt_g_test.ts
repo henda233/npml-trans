@@ -1,4 +1,4 @@
-import { RealDirectoryTreeGenerator } from "./directory_tree_generator.ts"
+import { RealDirectoryTreeGenerator } from "../directory_tree_generator.ts"
 
 
 const generator = new RealDirectoryTreeGenerator();

@@ -1,6 +1,6 @@
 // file_reader_test.ts
 import { assertEquals, assert } from "@std/assert";
-import { FileReader } from "./file_reader.ts";
+import { FileReader } from "../file_reader.ts";
 
 Deno.test("FileReader - 读取完整文件", async () => {
   const fileReader = new FileReader();

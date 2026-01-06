@@ -1,0 +1,17 @@
+(prefix){
+    (目标编程语言:直接回答)
+    (描述:编写最新的功能1.6的API文档)
+    (输出文件名:1-6-api.md)
+}
+
+(引入){
+    !(docs/project.md)
+    !(npml_request_generator.ts)
+    (旧API文档){
+        !(docs/api/1-6-api.md)
+    }
+}
+
+(编写新的1.6功能的API文档){
+    (功能1.6的实现为npml_request_generator.ts)
+}

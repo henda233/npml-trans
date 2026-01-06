@@ -1,8 +1,8 @@
 // reference_reader_test.ts
 
 import { assertEquals } from "@std/assert";
-import { NPMLReferenceReader, ReferenceResult } from "./reference_reader.ts";
-import { FileReader } from "./file_reader.ts";
+import { NPMLReferenceReader, ReferenceResult } from "../reference_reader.ts";
+import { FileReader } from "../file_reader.ts";
 
 // Mock FileReader class for testing by extending the actual class
 class MockFileReader extends FileReader {

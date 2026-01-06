@@ -1,0 +1,17 @@
+(prefix){
+    (目标编程语言：deno+typescript)
+    (描述：在1.6功能上完善剪切板操作)
+    (输出文件名：npml_request_generator.ts)
+    (尽可能少些注释)
+}
+
+(引入){
+    !(docs/api/1-6-api.md)
+    !(docs/api/1-8-api.md)
+    !(clipboard/mod.ts)
+    !(docs/project.md#76:82)
+}
+
+(基于功能1.8完善功能1.6的剪切板操作){
+    !(npml_request_generator.ts)
+}

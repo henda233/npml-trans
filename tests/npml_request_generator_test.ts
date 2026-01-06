@@ -1,7 +1,7 @@
-import {GenerationOptions, NpmlRequestGenerator, FileOutput} from "./npml_request_generator.ts";
-import { FileReader } from "./file_reader.ts";
-import { DirectoryTreeGenerator, RealDirectoryTreeGenerator } from "./directory_tree_generator.ts";
-import {NPMLReferenceReader} from "./reference_reader.ts";
+import {GenerationOptions, NpmlRequestGenerator, FileOutput} from "../npml_request_generator.ts";
+import { FileReader } from "../file_reader.ts";
+import { DirectoryTreeGenerator, RealDirectoryTreeGenerator } from "../directory_tree_generator.ts";
+import {NPMLReferenceReader} from "../reference_reader.ts";
 
 const npml_request_generator = new NpmlRequestGenerator(
     new FileReader(),
