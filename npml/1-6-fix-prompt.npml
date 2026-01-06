@@ -1,0 +1,13 @@
+(prefix){
+    (目标编程语言：deno+ts)
+    (输出文件名：npml_request_generator.ts)
+}
+
+(引入){
+    !(docs/project.md)
+    !(docs/dev/1-6-dev-fix-prompt.md)
+    !(npml_request_generator.ts)
+    !(docs/api/1-9-api.md)
+}
+
+(实现功能 1.6.1 NPML 翻译提示词的获取)

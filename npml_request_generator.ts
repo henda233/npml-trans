@@ -3,6 +3,8 @@ import { FileReader } from "./file_reader.ts";
 import { NPMLReferenceReader, ReferenceResult } from "./reference_reader.ts";
 import { DirectoryTreeGenerator } from "./directory_tree_generator.ts";
 import { Clipboard } from "./clipboard/mod.ts";
+import { readConfig } from "./config/mod.ts";
+import { PromptCache } from "./prompt_cache.ts";
 
 export interface GenerationOptions {
   includeDirTree?: string;
@@ -15,6 +17,7 @@ export class NpmlRequestGenerator {
   private referenceReader: NPMLReferenceReader;
   private dirTreeGenerator: DirectoryTreeGenerator;
   private clipboard: Clipboard;
+  private promptCache: PromptCache;
 
   constructor(
     fileReader: FileReader,
@@ -26,6 +29,7 @@ export class NpmlRequestGenerator {
     this.referenceReader = referenceReader;
     this.dirTreeGenerator = dirTreeGenerator;
     this.clipboard = clipboard;
+    this.promptCache = new PromptCache();
   }
 
   async generateRequest(
@@ -69,7 +73,8 @@ export class NpmlRequestGenerator {
       }
     }
 
-    const finalContent = `# NPML 翻译请求文\n\n## NPML代码:\n${mainNpmlContent}\n\n${dirTreeContent}${referencesContent}`;
+    const promptText = await this.getPromptText();
+    const finalContent = `# NPML 翻译请求文\n\n## NPML代码:\n${mainNpmlContent}\n\n${dirTreeContent}${referencesContent}\n${promptText}`;
 
     if (options.outputToClipboard) {
       try {
@@ -81,6 +86,12 @@ export class NpmlRequestGenerator {
     }
 
     return finalContent;
+  }
+
+  private async getPromptText(): Promise<string> {
+    const config = await readConfig();
+    const url = config.prompt_url;
+    return await this.promptCache.getPromptText(url);
   }
 }
 

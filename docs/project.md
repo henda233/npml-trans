@@ -93,6 +93,7 @@ const md = await res.text();
 console.log(md);
 ```
 线上地址url从[1.9 配置文件]中读取。
+可主动同步提示词，加上指定参数。
 
 ### 1.7 CLI工具
 实现2.1 项目架构中的CLI工具。

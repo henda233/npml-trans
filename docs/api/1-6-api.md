@@ -20,6 +20,8 @@
 | 依赖接口 | `reference_reader.ts` | 1-4 功能，提供 `readReferences(content):Promise<ReferenceResult[]>` |
 | 依赖接口 | `directory_tree_generator.ts` | 1-5 功能，提供 `generateTree(dir):Promise<string|null>` |
 | 依赖接口 | `clipboard/mod.ts` | 1-8 功能，提供剪贴板操作接口 |
+| 依赖接口 | `prompt_cache.ts` | 1-6-1 功能，提供 `PromptCache` 类用于获取翻译提示词 |
+| 依赖接口 | `config/mod.ts` | 1-9 功能，提供 `readConfig()` 读取配置文件 |
 | 外部库 | `jsr:@std/path` | 用于安全计算输出文件路径 |
 | 外部库 | `jsr:@std/fs` | 用于 `ensureFileSync` |
 
@@ -90,8 +92,9 @@ export function FileOutput(mdContent: string, npmlFilePath: string): string
 | ① 读取主文件 | 1-1 文件按行读取 | `fileReader.readFile(npmlFilePath)` | 返回 `string|null`；内部已统一追加行号 |
 | ② 读取引用块 | 1-4 NPML引用内容读取 | `referenceReader.readReferences(mainContent)` | 返回 `ReferenceResult[]`；内部已追加行号 |
 | ③ 生成目录树 | 1-5 目录结构树生成 | `dirTreeGenerator.generateTree(options.includeDirTree)` | 返回 `string|null`；已格式化为缩进文本 |
-| ④ 剪贴板写入 | 1-8 剪贴板操作 | `clipboard.writeText(content)` | 跨平台实现，当前基于 xsel |
-| ⑤ 文件写盘 | （新增） | `FileOutput(md, npmlFilePath)` | 纯函数，无其他功能依赖 |
+| ④ 获取翻译提示词 | 1-6-1 翻译提示词获取 | `promptCache.getPromptText(url)` | 返回 `string`；优先本地缓存，失败则网络抓取 |
+| ⑤ 剪贴板写入 | 1-8 剪贴板操作 | `clipboard.writeText(content)` | 跨平台实现，当前基于 xsel |
+| ⑥ 文件写盘 | （新增） | `FileOutput(md, npmlFilePath)` | 纯函数，无其他功能依赖 |
 
 --------------------------------------------------
 ## 五、错误处理策略

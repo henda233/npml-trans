@@ -1,0 +1,11 @@
+(prefix){
+    (目标编程语言：deno+typescript)
+}
+
+(引入){
+    !(prompt_cache.ts)
+}
+
+(对prompt_cache.ts进行测试){
+    !(tests/config_test.ts)
+}

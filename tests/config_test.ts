@@ -1,4 +1,4 @@
-// 1_9_config_test.ts
+// config_test.ts
 import { assertEquals, assertExists } from "@std/assert";
 import {
   getConfigPath,
