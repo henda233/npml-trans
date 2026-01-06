@@ -1,0 +1,14 @@
+(prefix){
+    (目标编程语言：deno+typescript)
+    (无注释)
+}
+
+(引入){
+    !(docs/project.md#116:128)
+    !(docs/api/1-9-api.md)
+    (相似测试代码文件){
+        !(tests/file_reader_test.ts#1:20)
+    }
+}
+
+(对功能1.9进行测试)
